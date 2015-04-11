@@ -17,7 +17,7 @@ def finder(dollars, flavors):
                 return idx+1, sub_idx+1
         
      
-i = 0
+i = 0   
 while i < test_cases:
     ice_cream_selector()
     i += 1
