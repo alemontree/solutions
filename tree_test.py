@@ -1,8 +1,8 @@
 from collections import deque
-from itertools import count
+
 
 class Node(object):
-    _ids = count()
+
     _ids_count = 0
     def __init__(self, value, left=None, right=None):
         self.value = value
@@ -46,17 +46,32 @@ class Node(object):
     def count_nodes_class(cls):
         return Node._ids_count
 
+    def traverse_breadth(self):      
+        queue = deque()
+        queue.append(self)
+        step = 1
 
+        #print self.value
+        while len(queue) > 0:
+            #print "Length: {},".format(len(queue)),
+            #print "Contents of queue, step {}: ".format(step) ,
+            # step +=1
+            # for obj in queue:
+            #     if obj:
+            #         print obj.value,             
+            # print 
+            a = queue.popleft()
+            print a.value
+            if a.left:
+                queue.append(a.left)
+            if a.right:
+                queue.append(a.right)
+        
 
 def count_nodes_pretty(node):      
     if not node:
         return 0;
     return 1 + count_nodes_pretty(node.left) + count_nodes_pretty(node.right)
-
-
-#def traverse_breadth(self):
-
-
 
 
 a = Node('A')
@@ -71,7 +86,7 @@ e = Node('E', c, g)
 
 print "node count:", e.count_nodes()
 print "node pretty count:", count_nodes_pretty(e)
-print "Class method:", Node.count_nodes_class()
+print "class method count:", Node.count_nodes_class()
 
 print "Pre order:"
 e.traverse_preorder()
@@ -79,8 +94,8 @@ print "In order:"
 e.traverse_inorder()
 print "Post order:"
 e.traverse_postorder()
-
-
+print "\nBreath traverse: "
+e.traverse_breadth()
 
 
 
